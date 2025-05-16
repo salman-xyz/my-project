@@ -1,0 +1,20 @@
+{
+  "name": "grand-rp-tool",
+  "version": "1.0.0",
+  "description": "A tool for Grand RP with car ads, house ads, and AFK logger",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "build": "echo 'No build step required'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "grand-rp",
+    "roleplay",
+    "tool"
+  ],
+  "author": "",
+  "license": "ISC"
+}

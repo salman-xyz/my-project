@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Grand RP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary: #5865F2;
+            --primary-dark: #4752C4;
+            --primary-light: #7983F5;
+            --background: #f5f7ff;
+            --card: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: var(--card);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.2);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .login-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* Animation for incorrect login */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        .piyush{
+    font-size: 3em; /* Adjust size as needed */
+    font-family: 'Arial', sans-serif; /* Choose a font */
+    color: #5865F2; /* Base text color (white works well for glows) */
+    text-align: center;
+    cursor: default; /* Optional: Indicate it's not interactive */
+
+    /* --- Animation --- */
+    /* 
+       animation: [animation-name] [duration] [timing-function] [iteration-count];
+       'glowing': Links to the @keyframes rule below.
+       '1.5s': Duration of one animation cycle (1.5 seconds).
+       'ease-in-out': Makes the animation start and end smoothly.
+       'infinite': Makes the animation loop forever.
+       'alternate': Makes the animation go back and forth smoothly between 0% and 100%
+    */
+    animation: glowing 1.5s ease-in-out infinite alternate;
+}
+
+/* --- Keyframes Definition --- */
+/* Defines the steps of the 'glowing' animation */
+@keyframes glowing {
+    /* Start state (0% or 'from') */
+    from {
+        /* text-shadow: [offset-x] [offset-y] [blur-radius] [color]; */
+        /* Multiple shadows can be added, separated by commas */
+        text-shadow: 0 0 5px #2430b8,        /* Inner white glow */
+                     0 0 10px #fff,       /* Middle white glow */
+                     0 0 15px #007bff;    /* Optional outer color glow (e.g., blue) */
+    }
+    /* End state (100% or 'to') */
+    to {
+        /* Make the glow brighter/larger */
+        text-shadow: 0 0 10px #ffffff,
+                     0 0 20px #00aaff,    /* Brighter blue */
+                     0 0 30px #00aaff;    /* Larger brighter blue */
+    }
+}
+
+/* --- Alternative Simpler White Glow --- */
+/*
+@keyframes glowing {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+}
+*/
+.developer {
+    font-size: 3.5em; /* Adjust size */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a font */
+    color: #f0950e; /* Base text color */
+    text-align: center;
+    cursor: default;
+    display: inline-block; /* Makes the border only span the text width */
+    padding-bottom: 8px;  /* Space between text and underline */
+    position: relative; /* Good practice, though not strictly needed here */
+
+    /* --- Underline (Initial State) --- */
+    border-bottom-width: 4px;  /* Underline thickness */
+    border-bottom-style: solid;
+    /* The initial color will be set by the animation */
+
+    /* --- Apply BOTH animations --- */
+    /* animation: [name1] [duration1] [timing1] [iteration1], [name2] [duration2] [timing2] [iteration2]; */
+    animation:
+        glowingText 1.5s ease-in-out infinite alternate, /* Text glow animation */
+        changeUnderlineColor 6s linear infinite;       /* Underline color animation */
+}
+
+/* --- Keyframes for Text Glow --- */
+@keyframes glowingText {
+    from {
+        /* Start glow */
+        text-shadow: 0 0 5px #fff,
+                     0 0 10px #fff,
+                     0 0 15px #0073e6; /* A bit of blue glow */
+    }
+    to {
+        /* End glow (brighter/bigger) */
+        text-shadow: 0 0 10px #fff,
+                     0 0 20px #00c6ff, /* Brighter blue */
+                     0 0 30px #00c6ff;
+    }
+}
+
+/* --- Keyframes for Underline Color Change --- */
+@keyframes changeUnderlineColor {
+    0%   { border-bottom-color: #ffadad; } /* Light Red */
+    25%  { border-bottom-color: #ffd6a5; } /* Light Orange */
+    50%  { border-bottom-color: #caffbf; } /* Light Green */
+    75%  { border-bottom-color: #a0c4ff; } /* Light Blue */
+    100% { border-bottom-color: #ffadad; } /* Back to Light Red */
+}
+
+/* --- Alternative: Underline using a pseudo-element (more flexible) --- */
+/*
+.developer {
+    font-size: 3.5em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    cursor: default;
+    display: inline-block;
+    position: relative; // Needed for pseudo-element positioning
+    padding-bottom: 8px; // Space for the underline
+    border-bottom: none; // Remove the direct border if using ::after
+
+    animation: glowingText 1.5s ease-in-out infinite alternate; // Only glow on the main element
+}
+
+.developer::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; // Position at the bottom
+    width: 100%; // Span the full width of the text
+    height: 4px; // Underline thickness
+    background-color: #ffadad; // Initial color
+
+    // Apply underline animation ONLY to the pseudo-element
+    animation: changeUnderlineColorPseudo 6s linear infinite;
+}
+
+@keyframes changeUnderlineColorPseudo {
+    0%   { background-color: #ffadad; }
+    25%  { background-color: #ffd6a5; }
+    50%  { background-color: #caffbf; }
+    75%  { background-color: #a0c4ff; }
+    100% { background-color: #ffadad; }
+}
+
+// Keep the @keyframes glowingText as defined above
+*/
+            
+        
+    </style>
+</head>
+<body>
+    
+       
+    <div class="login-container d-flex justify-content-center flex-column" id="loginContainer">
+        <h1><i class="fa fa-user-shield "></i></h1>
+        <div class="developer"> Developer </div>
+        <div class="piyush">Piyush Sarkar</div>
+        <br>
+        <div style="font-weight: bold; background-color: #cce6ff; border-radius: 25px;" class=" d-flex justify-content-center align-items-center gap-5">
+        <div class="text-success">Username-1</div>
+        <div class="text-success">Password-1</div>
+    </div>
+
+       
+        <div class="form-group">
+           
+            <br>
+            <a href="https://discord.com/users/1366041307260125194"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-discord d-flex justify-content-center " viewBox="0 0 16 16">
+                <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+              </svg></a>
+        </div>
+               
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-toggle">
+                <input type="password" id="password" placeholder="Enter your password">
+                <i class="fas fa-eye" id="togglePassword"></i>
+            </div>
+            <div class="error-message" id="errorMessage">Incorrect username or password!</div>
+        </div>
+        
+        <button class="login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt icon"></i>Login
+        </button>
+    </div>
+</div> 
+            <script src="js/login.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>
